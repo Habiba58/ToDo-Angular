@@ -1,0 +1,48 @@
+<div class="container">
+    <div id="overLayer" class="overLayer d-none"></div>
+    <div class="row mt-4 position-relative" style="height: 500px;">
+        <div class="alert-holder d-flex justify-content-center">
+            <div id="alert" class="d-none alert alert-light w-50">
+                <h5> Edit Task</h5>
+                <hr>
+                <div class="input-group p-4">
+                    <input #editInput type="text" class="form-control shadow" name="editTask"
+                    [(ngModel)]="editTaskValue">
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-success me-2" type="button" (click)="updateTask()">Save Changes</button>
+                    <button class="btn btn-danger" (click)="closeAlert()"> Close</button>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+        <div class="col-md-6 bg-white shadow p-3">
+            <div class="card bg-primary mt-4">
+                <h4 class="text-white p-3 pt-2 pb-2">ToDo App</h4>
+            </div>
+            <div class="shadow">
+                <div class="input-group p-4">
+                    <input #addInput type="text" class="form-control" placeholder="Enter task " name="task"
+                        [(ngModel)]="addTaskValue">
+                    <button class="btn btn-outline-success" type="button" (click)="addTask()">Add</button>
+                </div>
+            </div>
+            <h4 class="text-primary mt-4">Tasks : </h4>
+
+            <div style="overflow-y: auto; height: 350px;">
+                <div *ngFor="let task of tasksList ; index as i" class="m-3">
+                    <div class="p-2 shadow border" id="tasks">
+                        <div class="input-group row ps-3">
+                            <div class="card col-md-8 border-0">{{task.taskDesc}}</div>
+                            <button class="btn btn-outline-primary col me-2" (click)="editTaskModal(i,task.id)">Edit</button>
+                            <div class="btn btn-outline-danger col" (click)="deleteTask(task.id)">Delete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col"></div>
+    </div>
+</div>
